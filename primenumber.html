@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function nextPrime(value) {
+   if (value > 2) {
+       var i, q;
+       do {
+           i = 3;
+           value += 2;
+           q = Math.floor(Math.sqrt(value));
+           while (i <= q && value % i) {
+               i += 2;
+           }
+       } while (i <= q);
+       return value;
+   }
+   return value === 2 ? 3 : 2;
+}
+
+
+function generatePrime() {
+var userValue = document.getElementById("inputValue").value;
+var value = 0, result = [];
+for (var i = 0; i < userValue; i++) {
+value = nextPrime(value);
+result.push(value);
+}
+ document.getElementById("returnValue").innerHTML = result[userValue-1];
+}
+</script>
+</head>
+<body>
+
+Input value: <input type="text" name="inputValue" id="inputValue"/>
+<button onclick="generatePrime()">Get Prime number</button>
+<div id="returnValue"></div>
+
+</body>
+</html>

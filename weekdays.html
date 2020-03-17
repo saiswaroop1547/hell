@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script>
+var index=0;
+   function change_day()
+    {
+if (index>6)
+{
+index=0;
+}
+
+var days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+var text=document.createTextNode(days[index]);
+var p=document.createElement(p);
+var temp=p.appendChild(text);
+document.body.appendChild(temp);
+index=index +1;
+ }
+</script>
+<body>
+   <input type="submit" value="button"  onclick="change_day()">
+</body>
+</html>

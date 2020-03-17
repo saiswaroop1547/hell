@@ -1,0 +1,36 @@
+<html>
+<head>
+<script>
+var p1=0
+function change_days(){
+var a=document.getElementById("m");
+if(a.innerHTML==="Sunday"){
+a.innerHTML="Monday";
+
+}else if(a.innerHTML==="Monday"){
+a.innerHTML="Tuesday";
+}else if(a.innerHTML==="Tuesday"){
+a.innerHTML="Wednesday";
+}
+else if(a.innerHTML==="Wednesday"){
+a.innerHTML="Thursday";
+}
+else if(a.innerHTML==="Thursday"){
+a.innerHTML="Friday";
+}
+else if(a.innerHTML==="Friday"){
+a.innerHTML="Saturday";
+}
+
+else{
+a.innerHTML="Sunday";
+}
+}
+
+</script>
+</head>
+<body>
+<div id="m">Sunday</div>
+<input  id="mybutton" type="button" value="Change Text" onclick="change_days()">
+</body>
+</html>

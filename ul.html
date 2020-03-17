@@ -1,0 +1,35 @@
+<html>
+   <head>
+      <TITLE>List Example </TITLE>
+<script>
+function addItem(){
+    var ul = document.getElementById("unlist");
+    var mobileos = document.getElementById("mobileos");
+    var li = document.createElement("li");
+    li.setAttribute('id',mobileos.value);
+    li.appendChild(document.createTextNode(mobileos.value));
+    ul.appendChild(li);
+}
+function removeItem(){
+    var ul = document.getElementById("unlist");
+    var mobileos = document.getElementById("mobileos");
+    var item = document.getElementById(mobileos.value);
+    ul.removeChild(item);
+}
+</script>
+   </head>
+   <body>
+      <h1>Types of os in mobiles</h1>
+      <ul id=unlist>
+         <li> Android </li>
+         <li> Blckberry </li>
+         <li> iPhone </li>
+      </ul>
+<form>
+<input type=text id=mobieos />
+<button onclick="addItem()">add item</button><br>
+<button onclick="removeItem()">remove item</button>
+
+</form>
+   </body>
+</html>

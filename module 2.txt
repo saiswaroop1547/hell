@@ -1,0 +1,26 @@
+SELECT c.customer_number,c.firstname,a.account_number 
+FROM account_master a JOIN customer_master c  
+ON c.customer_number=a.customer_number 
+WHERE a.account_status='Terminated' 
+ORDER BY c.customer_number,a.account_number; 
+
+SELECT branch.branch_city, count(account.account_number) No_of_Accounts  
+FROM branch_master branch LEFT JOIN account_master account
+ON account.branch_id=branch.branch_id  
+GROUP BY branch.branch_city ORDER BY branch_city; 
+
+SELECT c.customer_number,c.firstname,c.lastname FROM 
+customer_master c JOIN loan_details l ON 
+c.customer_number=l.customer_number 
+GROUP BY l.customer_number HAVING count(l.branch_id)>1 
+ORDER BY c.customer_number;
+
+SELECT count(c.customer_number)Count FROM customer_master c JOIN loan_details l 
+ON c.customer_number=l.customer_number 
+WHERE c.customer_number NOT IN 
+(SELECT customer_number FROM account_master); 
+
+SELECT c.firstname,c.customer_city,a.account_number FROM  
+Customer_master c JOIN account_master a ON a.customer_number=c.customer_number 
+WHERE c.occupation NOT IN ('Service','Student','Business') 
+ORDER BY c.firstname,a.account_number; 

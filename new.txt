@@ -1,0 +1,179 @@
+CREATE  TABLE air_credit_card_details 
+( 
+profile_id VARCHAR(10)  NOT NULL, 
+card_number BIGINT, 
+card_type VARCHAR(45), 
+expiration_month INT, 
+expiration_year INT 
+);
+
+
+CREATE  TABLE air_passenger_profile 
+( 
+profile_id VARCHAR(10) NOT NULL , 
+password VARCHAR(45) NULL , 
+first_name VARCHAR(45) NULL , 
+last_name VARCHAR(45) NULL , 
+address VARCHAR(45) NULL , 
+mobile_number BIGINT NULL , 
+email_id VARCHAR(45) NULL  
+);
+
+
+CREATE  TABLE air_ticket_info 
+( 
+ticket_id VARCHAR(45) NOT NULL , 
+profile_id VARCHAR(10) NULL , 
+flight_id VARCHAR(45) NULL , 
+flight_departure_date DATE NULL , 
+status VARCHAR(45) NULL  
+);
+
+
+CREATE  TABLE air_flight_details 
+( 
+flight_id VARCHAR(45) NOT NULL , 
+flight_departure_date DATE NULL , 
+price DECIMAL(10,2) NULL , 
+available_seats INT NULL  
+); 
+
+
+CREATE  TABLE air_flight  
+( 
+flight_id VARCHAR(45) NOT NULL , 
+airline_id VARCHAR(45) NULL , 
+airline_name VARCHAR(45) NULL , 
+from_location VARCHAR(45) NULL , 
+to_location VARCHAR(45) NULL , 
+departure_time TIME NULL , 
+arrival_time TIME NULL , 
+duration TIME NULL , 
+total_seats INT NULL  
+);
+
+
+
+
+
+
+
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS001', 'CUS001', 'MV001', '2012-05-13', '2012-05-13','2012-05-13'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS002', 'CUS001', 'MV001', '2012-05-01', '2012-05-16','2012-05-16'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS003', 'CUS002', 'MV004', '2012-05-02', '2012-05-06','2012-05-16'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS004', 'CUS002', 'MV004', '2012-04-03', '2012-04-16','2012-04-20'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS005', 'CUS002', 'MV009', '2012-04-04', '2012-04-16','2012-04-20'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS006', 'CUS003', 'MV002', '2012-03-30', '2012-04-15','2012-04-20'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS007', 'CUS003', 'MV003', '2012-04-20', '2012-05-05','2012-05-05'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS008', 'CUS003', 'MV005', '2012-04-21', '2012-05-07','2012-05-25'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS009', 'CUS003', 'MV001', '2012-04-22', '2012-05-07','2012-05-25'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS010', 'CUS003', 'MV009', '2012-04-22', '2012-05-07','2012-05-25'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS011', 'CUS003', 'MV010', '2012-04-23', '2012-05-07','2012-05-25'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS012', 'CUS003', 'MV010', '2012-04-24', '2012-05-07','2012-05-25'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS013', 'CUS003', 'MV008', '2012-04-25', '2012-05-07','2012-05-25'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS014', 'CUS004', 'MV007', '2012-04-26', '2012-05-07','2012-05-25'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS015', 'CUS004', 'MV006', '2012-04-27', '2012-05-07','2012-05-25'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS016', 'CUS004', 'MV006', '2012-04-28', '2012-05-07','2012-05-25'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS017', 'CUS004', 'MV001', '2012-04-29', '2012-05-07','2012-05-25'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS018', 'CUS010', 'MV008', '2012-04-24', '2012-05-07','2012-05-25'); 
+Insert into CUSTOMER_ISSUE_DETAILS Values ('IS019', 'CUS011', 'MV009', '2012-04-27', '2012-05-07','2012-05-25');
+
+1. Write a query to display account number, 
+customer’s number,customer’s firstname, lastname
+, account opening date. Display the records 
+sorted in ascending order based on account number.
+
+
+SELECT a.account_number,c.customer_number,c.firstname
+,c.lastname,a.account_number FROM customer_master c JOIN 
+account_master a ON c.customer_number=a.customer_number 
+ORDER BY a.account_number; 
+ 
+
+select a.account_number,c.customer_number,
+c.firstname,c.lastname,a.account_opening_date from 
+customer_master c join account_master a 
+on c.customer_number=a.customer_number 
+order by a.account_number;
+
+
+2. Write a query to display the number 
+of customer’s from Delhi. Give 
+the count an alias name of Cust_Count. 
+
+select count(customer_number) cust_count from customer_master
+where customer_city="delhi";
+
+
+3. Write a query to display the customer number, 
+customer firstname, account number for the customer’s 
+whose accounts were created after 15th of any month
+. Display the records sorted in ascending order based 
+on customer number and then by account number. 
+
+
+SELECT c.customer_number,c.firstname,
+a.account_number FROM account_master 
+a join customer_master c 
+ON c.customer_number=a.customer_number WHERE 
+day(a.account_opening_date)>'15' 
+ORDER BY c.customer_number,a.account_number; 
+ 
+ 
+select c.customer_number,c.firstname,a.account_number from
+account_master a join customer_master c on 
+c.customer_number=a.customer_number
+where day(a.account_opening_date)>'15' 
+order by c.customer_number,a.customer_number;
+
+4. Write a query to display customer number, customer's 
+first name, account number where the account status 
+is terminated. Display the records sorted in 
+ascending order based on customer number and then 
+by account number. 
+
+select c.customer_number,c.firstname,a.account_number from 
+account_master a join customer_master c on c.customer_number=a.customer_number 
+where a.account_status='Terminated'
+order by c.customer_number,a.account_number; 
+
+Write a query to display the total number of 
+withdrawals and total number of 
+deposits being done by customer whose customer 
+number ends with 001. The query should display 
+transaction type and the number of transactions.Give an 
+alias name as Trans_Count for number of transactions.
+Display the records sorted in ascending order based on 
+transaction type. 
+
+select count(transaction_number)Trans_count
+
+5. Write a query to display the total number of withdrawals and total number of deposits being done by customer whose customer number ends with 001. The query should display transaction type and the number of transactions. Give an alias name as Trans_Count for number of transactions. Display the records sorted in ascending order based on transaction type. 
+ 
+
+SELECT transaction_type,count(transaction_number) Trans_Count 
+FROM account_master am JOIN transaction_details td 
+ON am.account_number=td.account_number 
+WHERE customer_number like '%001' 
+ORDER BY transaction_type; 
+
+
+6. Write a query to display the number of customers who have registration but no account in the bank.
+ Give the alias name as Count_Customer for number of customers. 
+
+SELECT count(customer_number) Count_Customer FROM customer_master 
+WHERE customer_number NOT IN (SELECT customer_number FROM account_master); 
+
+select count(customer_number) Count_Customer from customer_master
+where customer_number not in(select coustomer_number from account_master);
+
+
+7. Write a query to display account number and total amount deposited by each account 
+holder (Including the opening balance). Give the total amount deposited an alias name of Deposit_Amount.  
+Display the records in sorted order based on account number. 
+
+SELECT a.account_number,a.opening_balance+sum(t.transaction_amount) 
+FROM account_master a JOIN transaction_details t ON a.account_number=t.account_number 
+WHERE t.transaction_type='Deposit' GROUP BY t.account_number; 
+
+ 

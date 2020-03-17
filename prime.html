@@ -1,0 +1,23 @@
+<html>
+<head>
+<script>
+
+function getPrime(ele){
+var ele = document.getElementById("lo").value;
+var primes=[];
+    for (var i=1;i<ele;i++){
+        var prime=true;
+        var rootI=Math.sqrt(i)+1;
+        for (var j=2;j<rootI;j++){
+            if (i%j==0) {prime=false;break;}
+        };
+        if (prime) primes.push(i);
+    }
+    document.write(primes.join('-'));
+}
+</script>
+</head>
+<body>
+<input type="text" id = "lo"/>
+
+<button value="add" onclick="getPrime()">GET</button>
