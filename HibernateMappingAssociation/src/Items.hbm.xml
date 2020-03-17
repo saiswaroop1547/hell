@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC  
+          "-//Hibernate/Hibernate Configuration DTD 5.3//EN"  
+          "http://hibernate.sourceforge.net/hibernate-configuration-5.3.dtd"> 
+<hibernate-mapping package="package1">
+			<class name="Items" table="items">
+				<id name="id" type="long">
+					<column name="id"/>
+					<generator class="identity"/>
+				</id>
+				<property name="itemId" type="string">
+					<column name="item_Id"/>
+				</property>
+				<property name="itemTotal" type="double">
+					<column name="item_Total"/>
+				</property>
+				<property name="quantity" type="integer">
+					<column name="quantity"/>
+				</property>	
+				<many-to-one name="cart" class="Cart">
+				<column name="cart_id" not-null="true"/>
+				</many-to-one>
+			</class>
+</hibernate-mapping>
